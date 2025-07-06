@@ -4,6 +4,7 @@ from typing import List
 # 1. Can add unknown token for foreign chars.
 # 2. C++/Rust for faster implementation
 # 3. Pre load a-z and A-Z
+# 4. Trie implementation for single parse through text to encode
 
 
 class BPETokenizer:
