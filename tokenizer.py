@@ -15,7 +15,7 @@ class BPETokenizer:
         self.max_key = 0
         self.merges = {}
     
-    def train(self, text_corpus: str, vocab_size: int):
+    def train(self, text_corpus: str, vocab_size: int, verbose: bool = False):
         """
         Takes in the corpus of text to train on and the vocabulary size.
         
@@ -37,7 +37,14 @@ class BPETokenizer:
 
         text_idx = [self.stoi[ch] for ch in text_corpus]
 
+        milestones = [0] + [int(vocab_size * frac) - 1 for frac in (0.1 * i for i in range(2, 11, 2))]
+
         while self.max_key < vocab_size:
+            if verbose:
+                if self.max_key in milestones:
+                    percent_trained = int(round((100 * (self.max_key + 1) / vocab_size)))
+                    print(f"Training progress: {percent_trained}%")
+
             pair_count = {}
             for i1, i2 in zip(text_idx, text_idx[1:]):
                 pair_count[(i1, i2)] = pair_count.get((i1, i2), 0) + 1
