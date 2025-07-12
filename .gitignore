@@ -1,3 +1,4 @@
-dataset/
+build/
 __pycache__
 next-steps.txt
+tokenizer_train

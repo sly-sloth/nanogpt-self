@@ -3,12 +3,12 @@
 #include <fstream>
 #include <sstream>
 #include <chrono>
-#include "tokenizer.h"
+#include "bytoken.h"
 
 namespace fs = std::filesystem;
 
 int main() {
-    BPETokenizer tokenizer;
+    ByToken tokenizer;
 
     fs::path book_dir = "dataset/harry-potter-books/01 Harry Potter and the Sorcerers Stone train.txt";
 

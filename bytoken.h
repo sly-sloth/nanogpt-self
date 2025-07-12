@@ -12,7 +12,7 @@ struct pair_hash {
 };
 
 
-class BPETokenizer {
+class ByToken {
 private:
     std::unordered_map<int, std::string> itos;
     std::unordered_map<std::string, int> stoi;
@@ -22,9 +22,11 @@ private:
     std::vector<std::pair<std::string, int>> final_vocab;
 
 public:
-    BPETokenizer();
+    ByToken();
 
     void train(std::string text_corpus, int vocab_size, bool verbose = false);
     std::vector<int> encode(std::string text);
     std::string decode(std::vector<int> idx);
 };
+
+// bytoken

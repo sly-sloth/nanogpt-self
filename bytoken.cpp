@@ -1,4 +1,4 @@
-#include "tokenizer.h"
+#include "bytoken.h"
 
 #include <iostream>
 #include <sstream>
@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <set>
 
-BPETokenizer::BPETokenizer() : vocab_size(0), max_key(0) {
+ByToken::ByToken() : vocab_size(0), max_key(0) {
 
 }
 
@@ -22,7 +22,7 @@ BPETokenizer::BPETokenizer() : vocab_size(0), max_key(0) {
  * @param vocab_size Desired vocabulary size after training.
  * @param verbose Enable verbose output for debugging or progress tracking.
  */
-void BPETokenizer::train(std::string text_corpus, int vocab_size, bool verbose) {
+void ByToken::train(std::string text_corpus, int vocab_size, bool verbose) {
     this->vocab_size = vocab_size;
     std::set<char> text_corpus_unique(text_corpus.begin(), text_corpus.end());
 
@@ -116,7 +116,7 @@ void BPETokenizer::train(std::string text_corpus, int vocab_size, bool verbose) 
  * 
  * @return A vector of encoded integers.
 */
-std::vector<int> BPETokenizer::encode(std::string text) {
+std::vector<int> ByToken::encode(std::string text) {
     std::vector<int> encoded_idx;
     size_t pos = 0;
 
@@ -149,7 +149,7 @@ std::vector<int> BPETokenizer::encode(std::string text) {
  * 
  * @return The decoded string.
 */
-std::string BPETokenizer::decode(std::vector<int> idx)
+std::string ByToken::decode(std::vector<int> idx)
 {
     // add support for unsupported/unknown tokens
     std::string decoded_str;
